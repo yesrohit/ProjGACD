@@ -1,274 +1,91 @@
----
-title: "CodeBook"
-author: "RohitMittal"
-date: "August 23, 2015"
-output: html_document
----
+The following are the columns of the final resulting dataset. 
+The data is basically grouped by each Subject and ActivityDescription and the value of the mean of 79 different parameters are reported. After the list of columns below, a single output row is printed as an example.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
-```r
-library(data.table)
-library(dplyr)
-
-setwd("C:/Users/mittroh/Desktop/Data Science Course Track/GettingCleaningData_3/Course Project/UCI HAR Dataset/train")
-```
-
-Files X_train, subject_train.txt and y_train are loaded into dataframes using corresponding names and converted into dataframes. 
-
-
-
-```r
-## TRAINING DATA
-Y_train = read.csv('y_train.txt', header = FALSE, col.names = "Activity")
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'y_train.txt': No such file
-## or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
-subject_train = read.csv('subject_train.txt', header= FALSE, col.names = "Subject")
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'subject_train.txt': No such
-## file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
-names <- read.csv("./../features.txt", sep="\n" ,header = FALSE, as.is = TRUE)
-```
-
-```
-## Warning in file(file, "rt"): cannot open file './../features.txt': No such
-## file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
-names = as.vector(names[,1])
-```
-
-```
-## Error in names[, 1]: incorrect number of dimensions
-```
-
-```r
-X_train = read.table('X_train.txt', header=FALSE)
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'X_train.txt': No such file
-## or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
-colnames(X_train) = as.vector(names)
-```
-
-```
-## Error in colnames(X_train) = as.vector(names): object 'X_train' not found
-```
-
-Once the data is loaded, it is saved into a single dataset Trainset:
-
-```r
-TrainSet = cbind(subject_train,Y_train,Type="Train",X_train)
-```
-
-```
-## Error in cbind(subject_train, Y_train, Type = "Train", X_train): object 'subject_train' not found
-```
+"x"
+"1" "Subject"
+"2" "ActivityDescription"
+"3" "1 tBodyAcc-mean()-X"
+"4" "2 tBodyAcc-mean()-Y"
+"5" "3 tBodyAcc-mean()-Z"
+"6" "41 tGravityAcc-mean()-X"
+"7" "42 tGravityAcc-mean()-Y"
+"8" "43 tGravityAcc-mean()-Z"
+"9" "81 tBodyAccJerk-mean()-X"
+"10" "82 tBodyAccJerk-mean()-Y"
+"11" "83 tBodyAccJerk-mean()-Z"
+"12" "121 tBodyGyro-mean()-X"
+"13" "122 tBodyGyro-mean()-Y"
+"14" "123 tBodyGyro-mean()-Z"
+"15" "161 tBodyGyroJerk-mean()-X"
+"16" "162 tBodyGyroJerk-mean()-Y"
+"17" "163 tBodyGyroJerk-mean()-Z"
+"18" "201 tBodyAccMag-mean()"
+"19" "214 tGravityAccMag-mean()"
+"20" "227 tBodyAccJerkMag-mean()"
+"21" "240 tBodyGyroMag-mean()"
+"22" "253 tBodyGyroJerkMag-mean()"
+"23" "266 fBodyAcc-mean()-X"
+"24" "267 fBodyAcc-mean()-Y"
+"25" "268 fBodyAcc-mean()-Z"
+"26" "294 fBodyAcc-meanFreq()-X"
+"27" "295 fBodyAcc-meanFreq()-Y"
+"28" "296 fBodyAcc-meanFreq()-Z"
+"29" "345 fBodyAccJerk-mean()-X"
+"30" "346 fBodyAccJerk-mean()-Y"
+"31" "347 fBodyAccJerk-mean()-Z"
+"32" "373 fBodyAccJerk-meanFreq()-X"
+"33" "374 fBodyAccJerk-meanFreq()-Y"
+"34" "375 fBodyAccJerk-meanFreq()-Z"
+"35" "424 fBodyGyro-mean()-X"
+"36" "425 fBodyGyro-mean()-Y"
+"37" "426 fBodyGyro-mean()-Z"
+"38" "452 fBodyGyro-meanFreq()-X"
+"39" "453 fBodyGyro-meanFreq()-Y"
+"40" "454 fBodyGyro-meanFreq()-Z"
+"41" "503 fBodyAccMag-mean()"
+"42" "513 fBodyAccMag-meanFreq()"
+"43" "516 fBodyBodyAccJerkMag-mean()"
+"44" "526 fBodyBodyAccJerkMag-meanFreq()"
+"45" "529 fBodyBodyGyroMag-mean()"
+"46" "539 fBodyBodyGyroMag-meanFreq()"
+"47" "542 fBodyBodyGyroJerkMag-mean()"
+"48" "552 fBodyBodyGyroJerkMag-meanFreq()"
+"49" "4 tBodyAcc-std()-X"
+"50" "5 tBodyAcc-std()-Y"
+"51" "6 tBodyAcc-std()-Z"
+"52" "44 tGravityAcc-std()-X"
+"53" "45 tGravityAcc-std()-Y"
+"54" "46 tGravityAcc-std()-Z"
+"55" "84 tBodyAccJerk-std()-X"
+"56" "85 tBodyAccJerk-std()-Y"
+"57" "86 tBodyAccJerk-std()-Z"
+"58" "124 tBodyGyro-std()-X"
+"59" "125 tBodyGyro-std()-Y"
+"60" "126 tBodyGyro-std()-Z"
+"61" "164 tBodyGyroJerk-std()-X"
+"62" "165 tBodyGyroJerk-std()-Y"
+"63" "166 tBodyGyroJerk-std()-Z"
+"64" "202 tBodyAccMag-std()"
+"65" "215 tGravityAccMag-std()"
+"66" "228 tBodyAccJerkMag-std()"
+"67" "241 tBodyGyroMag-std()"
+"68" "254 tBodyGyroJerkMag-std()"
+"69" "269 fBodyAcc-std()-X"
+"70" "270 fBodyAcc-std()-Y"
+"71" "271 fBodyAcc-std()-Z"
+"72" "348 fBodyAccJerk-std()-X"
+"73" "349 fBodyAccJerk-std()-Y"
+"74" "350 fBodyAccJerk-std()-Z"
+"75" "427 fBodyGyro-std()-X"
+"76" "428 fBodyGyro-std()-Y"
+"77" "429 fBodyGyro-std()-Z"
+"78" "504 fBodyAccMag-std()"
+"79" "517 fBodyBodyAccJerkMag-std()"
+"80" "530 fBodyBodyGyroMag-std()"
+"81" "543 fBodyBodyGyroJerkMag-std()"
 
 
-Similarly for the test dataset:
+#EXAMPLE RESULT (1st Row):
 
-```r
-##TEST DATA
-setwd("C:/Users/mittroh/Desktop/Data Science Course Track/GettingCleaningData_3/Course Project/UCI HAR Dataset/test")
-Y_test = read.csv('y_test.txt', header = FALSE, col.names = "Activity")
-subject_test = read.csv('subject_test.txt', header= FALSE, col.names = "Subject")
-names <- read.csv("./../features.txt", sep="\n" ,header = FALSE, as.is = TRUE)
-names = as.vector(names[,1])
-X_test = read.table('X_test.txt', header=FALSE)
-colnames(X_test) = as.vector(names)
-TestSet = cbind(subject_test,Y_test,Type="Test",X_test)
-```
-
-Finally, once the training and test datasets are prepared, they are combined using rbind:
-
-```r
-##TRAINING AND TEST DATASET
-CompleteData = rbind(TrainSet, TestSet)
-```
-
-```
-## Error in rbind(TrainSet, TestSet): object 'TrainSet' not found
-```
-
-The combined dataset has more than 560 columns. Using grep function, column names containing the word 'mean' or 'std' are extracted. stdORmeanCol represent all these column numbers. This is then used to extract data from the combined dataset into a dataset called "CompleteDataSTD_MEAN"
-
-
-```r
-##COLUMNS HAVING STANDARD DEVIATION OR MEAN IN THEM
-stdORmeanCol = c(grep("mean",colnames(CompleteData)),grep("std",colnames(CompleteData)))
-CompleteDataSTD_MEAN = CompleteData[,c(1:3,stdORmeanCol)]
-```
-
-Next, we need to add descriptions for the activity type. This was found in the activity_labels.txt file. 
-The descriptions were extracted and matched to the activity in the completeDataSTD_Mean[i,2]
-
-
-```r
-Activitynames <- as.vector(read.csv("./../activity_labels.txt", sep="\n" ,header = FALSE, stringsAsFactors = FALSE)[,1])
-```
-
-```
-## Warning in file(file, "rt"): cannot open file './../activity_labels.txt':
-## No such file or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
-ActivityDescription <-numeric(0)
-
-for(i in 1:length(CompleteDataSTD_MEAN[,1]))
-    ActivityDescription[i] = Activitynames[as.numeric(CompleteDataSTD_MEAN[i,2])]
-```
-
-```
-## Error: object 'Activitynames' not found
-```
-
-```r
-CompleteDataSTD_MEAN_ActDesc = cbind(CompleteDataSTD_MEAN[,c(1:3)],ActivityDescription,CompleteDataSTD_MEAN[4:dim(CompleteDataSTD_MEAN)[2]]) ##Add column of Activity Description next to the Activity column.
-```
-
-```
-## Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 10299, 0
-```
-
-```r
-colnames(CompleteDataSTD_MEAN_ActDesc)
-```
-
-```
-##  [1] "Subject"                            
-##  [2] "Activity"                           
-##  [3] "Type"                               
-##  [4] "ActivityDescription"                
-##  [5] "1 tBodyAcc-mean()-X"                
-##  [6] "2 tBodyAcc-mean()-Y"                
-##  [7] "3 tBodyAcc-mean()-Z"                
-##  [8] "41 tGravityAcc-mean()-X"            
-##  [9] "42 tGravityAcc-mean()-Y"            
-## [10] "43 tGravityAcc-mean()-Z"            
-## [11] "81 tBodyAccJerk-mean()-X"           
-## [12] "82 tBodyAccJerk-mean()-Y"           
-## [13] "83 tBodyAccJerk-mean()-Z"           
-## [14] "121 tBodyGyro-mean()-X"             
-## [15] "122 tBodyGyro-mean()-Y"             
-## [16] "123 tBodyGyro-mean()-Z"             
-## [17] "161 tBodyGyroJerk-mean()-X"         
-## [18] "162 tBodyGyroJerk-mean()-Y"         
-## [19] "163 tBodyGyroJerk-mean()-Z"         
-## [20] "201 tBodyAccMag-mean()"             
-## [21] "214 tGravityAccMag-mean()"          
-## [22] "227 tBodyAccJerkMag-mean()"         
-## [23] "240 tBodyGyroMag-mean()"            
-## [24] "253 tBodyGyroJerkMag-mean()"        
-## [25] "266 fBodyAcc-mean()-X"              
-## [26] "267 fBodyAcc-mean()-Y"              
-## [27] "268 fBodyAcc-mean()-Z"              
-## [28] "294 fBodyAcc-meanFreq()-X"          
-## [29] "295 fBodyAcc-meanFreq()-Y"          
-## [30] "296 fBodyAcc-meanFreq()-Z"          
-## [31] "345 fBodyAccJerk-mean()-X"          
-## [32] "346 fBodyAccJerk-mean()-Y"          
-## [33] "347 fBodyAccJerk-mean()-Z"          
-## [34] "373 fBodyAccJerk-meanFreq()-X"      
-## [35] "374 fBodyAccJerk-meanFreq()-Y"      
-## [36] "375 fBodyAccJerk-meanFreq()-Z"      
-## [37] "424 fBodyGyro-mean()-X"             
-## [38] "425 fBodyGyro-mean()-Y"             
-## [39] "426 fBodyGyro-mean()-Z"             
-## [40] "452 fBodyGyro-meanFreq()-X"         
-## [41] "453 fBodyGyro-meanFreq()-Y"         
-## [42] "454 fBodyGyro-meanFreq()-Z"         
-## [43] "503 fBodyAccMag-mean()"             
-## [44] "513 fBodyAccMag-meanFreq()"         
-## [45] "516 fBodyBodyAccJerkMag-mean()"     
-## [46] "526 fBodyBodyAccJerkMag-meanFreq()" 
-## [47] "529 fBodyBodyGyroMag-mean()"        
-## [48] "539 fBodyBodyGyroMag-meanFreq()"    
-## [49] "542 fBodyBodyGyroJerkMag-mean()"    
-## [50] "552 fBodyBodyGyroJerkMag-meanFreq()"
-## [51] "4 tBodyAcc-std()-X"                 
-## [52] "5 tBodyAcc-std()-Y"                 
-## [53] "6 tBodyAcc-std()-Z"                 
-## [54] "44 tGravityAcc-std()-X"             
-## [55] "45 tGravityAcc-std()-Y"             
-## [56] "46 tGravityAcc-std()-Z"             
-## [57] "84 tBodyAccJerk-std()-X"            
-## [58] "85 tBodyAccJerk-std()-Y"            
-## [59] "86 tBodyAccJerk-std()-Z"            
-## [60] "124 tBodyGyro-std()-X"              
-## [61] "125 tBodyGyro-std()-Y"              
-## [62] "126 tBodyGyro-std()-Z"              
-## [63] "164 tBodyGyroJerk-std()-X"          
-## [64] "165 tBodyGyroJerk-std()-Y"          
-## [65] "166 tBodyGyroJerk-std()-Z"          
-## [66] "202 tBodyAccMag-std()"              
-## [67] "215 tGravityAccMag-std()"           
-## [68] "228 tBodyAccJerkMag-std()"          
-## [69] "241 tBodyGyroMag-std()"             
-## [70] "254 tBodyGyroJerkMag-std()"         
-## [71] "269 fBodyAcc-std()-X"               
-## [72] "270 fBodyAcc-std()-Y"               
-## [73] "271 fBodyAcc-std()-Z"               
-## [74] "348 fBodyAccJerk-std()-X"           
-## [75] "349 fBodyAccJerk-std()-Y"           
-## [76] "350 fBodyAccJerk-std()-Z"           
-## [77] "427 fBodyGyro-std()-X"              
-## [78] "428 fBodyGyro-std()-Y"              
-## [79] "429 fBodyGyro-std()-Z"              
-## [80] "504 fBodyAccMag-std()"              
-## [81] "517 fBodyBodyAccJerkMag-std()"      
-## [82] "530 fBodyBodyGyroMag-std()"         
-## [83] "543 fBodyBodyGyroJerkMag-std()"
-```
-
-
-Finally, we group the data table by the subject and activity and find the mean for each of the mean/std variable and write it to the file "Final.txt""
-
-
-```r
-stdMeanDataTable = data.table(CompleteDataSTD_MEAN_ActDesc)
-
-finalresult = datTabset[,lapply(.SD, mean), by=list(Subject,ActivityDescription), ]
-setwd('./..')
-write.table(finalresult, file="Final.txt", row.names=FALSE)
-```
+"Subject" "ActivityDescription" "1 tBodyAcc-mean()-X" "2 tBodyAcc-mean()-Y" "3 tBodyAcc-mean()-Z" "41 tGravityAcc-mean()-X" "42 tGravityAcc-mean()-Y" "43 tGravityAcc-mean()-Z" "81 tBodyAccJerk-mean()-X" "82 tBodyAccJerk-mean()-Y" "83 tBodyAccJerk-mean()-Z" "121 tBodyGyro-mean()-X" "122 tBodyGyro-mean()-Y" "123 tBodyGyro-mean()-Z" "161 tBodyGyroJerk-mean()-X" "162 tBodyGyroJerk-mean()-Y" "163 tBodyGyroJerk-mean()-Z" "201 tBodyAccMag-mean()" "214 tGravityAccMag-mean()" "227 tBodyAccJerkMag-mean()" "240 tBodyGyroMag-mean()" "253 tBodyGyroJerkMag-mean()" "266 fBodyAcc-mean()-X" "267 fBodyAcc-mean()-Y" "268 fBodyAcc-mean()-Z" "294 fBodyAcc-meanFreq()-X" "295 fBodyAcc-meanFreq()-Y" "296 fBodyAcc-meanFreq()-Z" "345 fBodyAccJerk-mean()-X" "346 fBodyAccJerk-mean()-Y" "347 fBodyAccJerk-mean()-Z" "373 fBodyAccJerk-meanFreq()-X" "374 fBodyAccJerk-meanFreq()-Y" "375 fBodyAccJerk-meanFreq()-Z" "424 fBodyGyro-mean()-X" "425 fBodyGyro-mean()-Y" "426 fBodyGyro-mean()-Z" "452 fBodyGyro-meanFreq()-X" "453 fBodyGyro-meanFreq()-Y" "454 fBodyGyro-meanFreq()-Z" "503 fBodyAccMag-mean()" "513 fBodyAccMag-meanFreq()" "516 fBodyBodyAccJerkMag-mean()" "526 fBodyBodyAccJerkMag-meanFreq()" "529 fBodyBodyGyroMag-mean()" "539 fBodyBodyGyroMag-meanFreq()" "542 fBodyBodyGyroJerkMag-mean()" "552 fBodyBodyGyroJerkMag-meanFreq()" "4 tBodyAcc-std()-X" "5 tBodyAcc-std()-Y" "6 tBodyAcc-std()-Z" "44 tGravityAcc-std()-X" "45 tGravityAcc-std()-Y" "46 tGravityAcc-std()-Z" "84 tBodyAccJerk-std()-X" "85 tBodyAccJerk-std()-Y" "86 tBodyAccJerk-std()-Z" "124 tBodyGyro-std()-X" "125 tBodyGyro-std()-Y" "126 tBodyGyro-std()-Z" "164 tBodyGyroJerk-std()-X" "165 tBodyGyroJerk-std()-Y" "166 tBodyGyroJerk-std()-Z" "202 tBodyAccMag-std()" "215 tGravityAccMag-std()" "228 tBodyAccJerkMag-std()" "241 tBodyGyroMag-std()" "254 tBodyGyroJerkMag-std()" "269 fBodyAcc-std()-X" "270 fBodyAcc-std()-Y" "271 fBodyAcc-std()-Z" "348 fBodyAccJerk-std()-X" "349 fBodyAccJerk-std()-Y" "350 fBodyAccJerk-std()-Z" "427 fBodyGyro-std()-X" "428 fBodyGyro-std()-Y" "429 fBodyGyro-std()-Z" "504 fBodyAccMag-std()" "517 fBodyBodyAccJerkMag-std()" "530 fBodyBodyGyroMag-std()" "543 fBodyBodyGyroJerkMag-std()"
+1 "5 STANDING" 0.278917629056604 -0.0161375901037736 -0.110601817735849 0.942952000377358 -0.272983832264151 0.0134905823226415 0.0753766542264151 0.00797573092830189 -0.00368524954709434 -0.0239877347979245 -0.0593972209811321 0.074800751 -0.0996092129056604 -0.0440627877924528 -0.0489505466716981 -0.98427820735849 -0.98427820735849 -0.992367790566038 -0.976493792830189 -0.994966790566038 -0.99524993264151 -0.977070847735849 -0.985297098679245 0.0865153619088679 0.117478948718868 0.244858585792453 -0.994630797358491 -0.985418704528302 -0.990752166037736 0.314182940150943 0.0391618954943396 0.138581478749057 -0.986386786037736 -0.988984455849057 -0.980773122830189 -0.120293020603774 -0.0447191978169811 0.100607635139623 -0.985356361132075 0.284555290773585 -0.99254247754717 0.422220102264151 -0.984617623396226 -0.0286057725328302 -0.994815376981132 0.334498734301887 -0.995759901509434 -0.973190056415094 -0.979775876981132 -0.99376298509434 -0.981225957924528 -0.976324063584906 -0.994604542264151 -0.98564873245283 -0.992251177358491 -0.987191946603774 -0.98773444 -0.980645626981132 -0.992945106981132 -0.995137917358491 -0.992108467169811 -0.981942928867925 -0.981942928867925 -0.993096209433962 -0.978690028679245 -0.994733238679245 -0.99602834509434 -0.972293102075472 -0.977937259622642 -0.995073759245283 -0.987018226792453 -0.992349818113207 -0.987497128679245 -0.987107727735849 -0.98234533 -0.982313804716981 -0.992536003396226 -0.978466072075472 -0.994671123207547
