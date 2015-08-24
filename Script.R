@@ -2,7 +2,7 @@
 library(data.table)
 library(dplyr)
 
-setwd("C:/Users/mittroh/Desktop/Data Science Course Track/GettingCleaningData_3/Course Project/UCI HAR Dataset/train")
+setwd("train")
 
 
 ## TRAINING DATA
@@ -17,7 +17,7 @@ TrainSet = cbind(subject_train,Y_train,Type="Train",X_train)
 
 
 ##TEST DATA
-setwd("C:/Users/mittroh/Desktop/Data Science Course Track/GettingCleaningData_3/Course Project/UCI HAR Dataset/test")
+setwd("./../test")
 Y_test = read.csv('y_test.txt', header = FALSE, col.names = "Activity")
 subject_test = read.csv('subject_test.txt', header= FALSE, col.names = "Subject")
 names <- read.csv("./../features.txt", sep="\n" ,header = FALSE, as.is = TRUE)
