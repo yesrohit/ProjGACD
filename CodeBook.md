@@ -66,7 +66,7 @@ names = as.vector(names[,1])
 ```
 
 ```
-## Error in names[, 1]: object of type 'builtin' is not subsettable
+## Error in names[, 1]: incorrect number of dimensions
 ```
 
 ```r
@@ -87,7 +87,7 @@ colnames(X_train) = as.vector(names)
 ```
 
 ```
-## Error in as.vector(x, mode): cannot coerce type 'builtin' to vector of type 'any'
+## Error in colnames(X_train) = as.vector(names): object 'X_train' not found
 ```
 
 Once the data is loaded, it is saved into a single dataset Trainset:
